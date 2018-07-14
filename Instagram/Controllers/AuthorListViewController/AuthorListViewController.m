@@ -49,6 +49,7 @@
         
         cell.imgBanner.image = [UIImage imageNamed:@"placeholder"];
         
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         [self downloadImageWithURL:url andImageName:cModel.filename andIndexPath:indexPath completionBlock:^(BOOL succeeded, UIImage *image) {
             if (succeeded) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -100,6 +101,7 @@
                                       if (image) {
                                           dispatch_async(dispatch_get_main_queue(),
                                                          ^{
+                                                             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                                                              AuthorListCell *cell = (id)[self.tblAuthors cellForRowAtIndexPath:indexPath];
                                                              if (cell)
                                                                  cell.imgBanner.image = image;
